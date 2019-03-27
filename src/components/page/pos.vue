@@ -10,7 +10,7 @@
               <el-table-column prop="price" label="金额" width="70"></el-table-column>
               <el-table-column label="操作"  width="100" fixed="right">
                 <template slot-scope="scope">
-                  <el-button type = "text" size="small" @click="delOrderList(index)">删除</el-button>
+                  <el-button type = "text" size="small">删除</el-button>
                   <el-button type = "text" size="small">增加</el-button>
                 </template>
               </el-table-column>
@@ -164,9 +164,6 @@ export default {
         let newGoods = {goodsId:goods.goodsId,goodsName:goods.goodsName,price:goods.price,count:1};
         this.tableData.push(newGoods);
       }
-    },
-    delOrderList(index){ 
-      this.tableData.splice(index, 1);
     }
   }
 }

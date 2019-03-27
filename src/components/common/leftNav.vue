@@ -1,66 +1,129 @@
 <template>
-    <div class="left-nav">
-        <ul>
-            <li>
-                <i class="icon iconfont icon-Homepage"></i>
-                <div>首页</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-commodity"></i>
-                <div>商品管理</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-message"></i>
-                <div>信息列表</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-commodity"></i>
-                <div>店铺管理</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-funds-mgr"></i>
-                <div>财务管理</div>
-            </li>
-            <li>
-                <i class="icon iconfont icon-ziyuan"></i>
-                <div>管理员管理</div>
-            </li>
-        </ul>
-    </div>
+  <div class="left-nav">
+    <ul class="sidebar-el-menu">
+      <a @click="collapseChage()">
+        <i class="icon iconfont el-icon-menu"></i>
+      </a>
+      <li v-for="(item, index) in navList" :key="index">
+        <router-link
+          :to="item.path"
+          :class="{'active': isActive(item.path)}"
+          effect="dark"
+          content="item.link"
+          placement="right"
+        >
+          <el-tooltip
+            :disabled="disabled"
+            class="item"
+            effect="dark"
+            :content="item.link"
+            placement="right"
+          >
+            <i class="icon iconfont" :class="item.icon"></i>
+          </el-tooltip>
+          <div class="title">{{item.link}}</div>
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+import bus from "@/components/common/bus.js";
 export default {
-    
-}
+  data() {
+    return {
+      disabled: true,
+      collapse: false, //侧边栏折叠
+      navList: [
+        {
+          icon: "icon-commodity",
+          link: "认证中心",
+          path: "/Role"
+        },
+        {
+          icon: "icon-message",
+          link: "运营中心",
+          path: "/b"
+        },
+        {
+          icon: "icon-commodity",
+          link: "财务管理",
+          path: "/c"
+        },
+        {
+          icon: "icon-funds-mgr",
+          link: "运营监控",
+          path: "/d"
+        }
+      ]
+    };
+  },
+  methods: {
+    isActive(path) {
+      return path === this.$route.fullPath;
+    },
+    // 侧边栏折叠
+    collapseChage() {
+      this.disabled = !this.disabled;
+      this.collapse = !this.collapse;
+      bus.$emit("collapse", this.collapse);
+    }
+  },
+  mounted() {
+    if (document.body.clientWidth < 1500) {
+      this.collapseChage();
+    }
+  }
+};
 </script>
 
-<style>
-.left-nav{
-    color: #ffffff;
-    font-size: 14px;
-    height: 91%;   
-    background-color: #324057;
-    float: left;
-    width: 12%;
+<style scoped>
+.left-nav {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 64px;
+  bottom: 0;
+  overflow-y: scroll;
+  background: #282b33;
 }
-.iconfont{
-    font-size: 14px;
-    padding: 0px 6px;
+.sidebar::-webkit-scrollbar {
+  width: 0;
 }
-.left-nav ul{
-    padding: 0px;
-    margin: 0px;
+.sidebar-el-menu:not(.el-menu--collapse) {
+  width: 210px;
 }
-.left-nav li{
-    height: 50px;
-    list-style: none;
-    border-bottom:1px solid #A8A8A8;
-    line-height: 50px;
-    text-align: left;
+.left-nav > ul a {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(40, 43, 51, 1);
+  font-size: 18px;
+  font-weight: 400px;
+  text-decoration: none;
 }
-.left-nav li div{
-    display: inline-block;
+.left-nav > ul a .iconfont {
+  font-size: 14px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 64px;
+}
+.left-nav > ul a .title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.left-nav > ul a:hover {
+  background: rgba(57, 61, 73, 0.7);
+}
+.left-nav > ul > li a.active {
+  background: rgba(57, 61, 73, 1);
 }
 </style>
 
