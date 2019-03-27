@@ -54,23 +54,23 @@ export default {
       menuList: [
         {
           link: "角色管理",
-          path: '/Role'
+          path: '/auth/role'
         },
         {
           link: "用户管理",
-          path: '/User'
+          path: '/auth/user'
         },
         {
           link: "用户反馈",
-          path: '/Feedback'
+          path: '/auth/Feedback'
         },
         {
           link: "商家入驻",
-          path: '/Enter'
+          path: '/auth/Enter'
         },
         {
           link: "Token管理",
-          path: '/Token'
+          path: '/auth/Token'
         }
       ]
     };

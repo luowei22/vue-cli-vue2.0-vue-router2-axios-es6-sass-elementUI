@@ -39,7 +39,7 @@ export default {
         {
           icon: "icon-commodity",
           link: "认证中心",
-          path: "/Role"
+          path: "/auth"
         },
         {
           icon: "icon-message",

@@ -7,7 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueParticles from 'vue-particles'
 //全局样式
-// import './assets/scss/common.scss'
+import './assets/scss/common.scss'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

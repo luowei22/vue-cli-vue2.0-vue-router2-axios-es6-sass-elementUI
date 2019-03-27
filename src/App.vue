@@ -10,5 +10,4 @@
 </script>
 
 <style lang="scss">  
- @import url(./assets/scss/common.scss);
 </style>
