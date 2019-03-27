@@ -9,6 +9,7 @@ import Feedback from '@/components/page/authentication/feedback/Feedback.vue'
 import Enter from '@/components/page/authentication/enter/Enter.vue'
 import Token from '@/components/page/authentication/token/Token.vue'
 import authentication from '@/components/page/authentication/authentication.vue'
+import finance from '@/components/page/finance/finance.vue'
 
 Vue.use(Router)
 
@@ -31,7 +32,16 @@ export default new Router({
             {path:'/auth/Token',component:Token},
           ]
           
-        }
+        },
+        {
+          path: '/finance', 
+          component: finance,
+          // redirect:'/auth/role',
+          children:[
+           
+          ]
+          
+        },
      
       ]
     },

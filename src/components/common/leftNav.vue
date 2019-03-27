@@ -49,7 +49,7 @@ export default {
         {
           icon: "icon-commodity",
           link: "财务管理",
-          path: "/c"
+          path: "/finance"
         },
         {
           icon: "icon-funds-mgr",

@@ -5,7 +5,7 @@
       <p>运营平台管理系统</p>
     </a>
     <ul class="top-menu">
-      <router-link v-for="(item, index) in menuList" 
+      <router-link v-for="(item, index) in menuList[curRouter]" 
         :key="index" 
         :class="{'active': isActive(item.path)}"
         :to="item.path"
@@ -51,8 +51,9 @@ export default {
   data() {
     return { 
       fullscreen: false,  //全屏提示
-      menuList: [
-        {
+      curRouter:'',
+      menuList: {
+        auth:[{
           link: "角色管理",
           path: '/auth/role'
         },
@@ -71,14 +72,37 @@ export default {
         {
           link: "Token管理",
           path: '/auth/Token'
-        }
-      ]
+        }],
+        finance:[
+          {
+           link: "商户对账2",
+           path: '/auth/role'
+          },
+          {
+           link: "退款申请",
+           path: '/auth/role'
+          },
+          {
+           link: "平台对账",
+           path: '/auth/role'
+          }
+         
+        ]
+      } 
     };
   },
   computed: {
     username() {
       let username = localStorage.getItem("ms_username");
       return username ? username : this.name;
+    }
+  },
+  watch:{
+    $route(to,from){
+      console.log(to.path);
+      console.log(to);
+      let pathName = to.path.split('/')[1];
+      this.curRouter = pathName;
     }
   },
   methods: {
